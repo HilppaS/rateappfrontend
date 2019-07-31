@@ -3,7 +3,7 @@ import {Card} from 'react-bootstrap'
 export default function UserRecentPost(props) {
     return (
         <Card>
-          <Card.Img variant="top" src="https://images.unsplash.com/photo-1527169402691-feff5539e52c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80" />
+          <Card.Img variant="top" src="https://images.unsplash.com/photo-1527169402691-feff5539e52c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9" />
           <Card.Body>
             <Card.Title>{props.post.headline}</Card.Title>
                 <Card.Text>
