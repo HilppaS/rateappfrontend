@@ -1,2 +1,15 @@
 h1 {text-align: center;
 font-family: Calibri}
+
+.jumbotron {
+    background: url('./pictures/frontpage2.jpg') no-repeat center;
+    height: 700px;
+    color: 'white'!important;
+}
+
+.jumbotron p, h1 {
+    background-color: 'black'!important;
+    color: white;
+    text-align: center;
+    }
+
