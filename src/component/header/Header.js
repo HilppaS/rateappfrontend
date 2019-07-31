@@ -127,7 +127,7 @@ export default function Header(props) {
           setIsLogged(true);
         }
       })
-      .then(props.history.push("/test"));
+      .then(props.history.push("test"));
 
     /* .then(window.open("/main")) */
 

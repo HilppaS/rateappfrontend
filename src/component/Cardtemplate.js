@@ -17,7 +17,7 @@ class Cardtemplate extends Component {
                         <Card.Text>
                             {this.props.content.text}
                         </Card.Text>
-                        <Button variant="info" onClick={}>Linkki</Button>
+                        <Button variant="info" >Linkki</Button>
                     </Card.Body>
                 </Card>
 
