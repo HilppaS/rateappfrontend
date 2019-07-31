@@ -2,7 +2,5 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
-.col{background-color: lightgrey;
-    border: 2px;
-    border-color: black}
 
+.col.right{background-color: whitesmoke}

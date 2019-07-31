@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import './Starterpage.css';
-import Image from "react-bootstrap/Image";
+import Sidebar from "./Sidebar";
 
 class Starterpage extends Component {
 
@@ -26,12 +26,12 @@ class Starterpage extends Component {
 
         return (
             <div>
-            <h1>Feed</h1>
+            <h1>RECENT POSTS</h1>
                 <Container>
                     <Row>
-                        <Col className="bsPrefix">Column left</Col>
+                        <Sidebar/>
                         <Col md="auto">{content}</Col>
-                        <Col className="right">Column right</Col>
+                        <Col className="right"></Col>
                     </Row>
                 </Container>
             </div>
