@@ -123,7 +123,7 @@ export default function Header(props) {
         console.log(res);
         if (res.status === 200) {
           localStorage.setItem("Token", res.data.accessToken);
-
+          localStorage.setItem("Username", usernameInput);  
           setIsLogged(true);
         }
       })
@@ -153,7 +153,10 @@ export default function Header(props) {
   };
 
   const isLoggedin = isLogged ? (
-    <Button onClick={logOut}>Logout</Button>
+    <div>
+      <React.Fragment>{localStorage.getItem("Username")}</React.Fragment>
+      <Button onClick={logOut} style={{ marginLeft: '10px' }}>Logout</Button>
+    </div>
   ) : (
     <div>
       <Form inline="true" onSubmit={handleSubmit}>
@@ -174,15 +177,15 @@ export default function Header(props) {
         <Button variant="outline-primary" onClick={handleSubmit}>
           Login
         </Button>
-      <Button
-        variant="outline-info"
-        inline="true"
-        style={{ marginLeft: "8px" }}
-        onClick={() => setModalShow(true)}
+        <Button
+          variant="outline-info"
+          inline="true"
+          style={{ marginLeft: "8px" }}
+          onClick={() => setModalShow(true)}
         >
-        Register
-      </Button>
-        </Form>
+          Register
+        </Button>
+      </Form>
     </div>
   );
 

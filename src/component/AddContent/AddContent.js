@@ -4,30 +4,28 @@ import PostModal from "./PostModal";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 
-export default function AddContent() {
-    const [modalShow, setModalShow] = React.useState(false);
-    const [isLogged, setIsLogged] = useState();
-    const [showButton, setShowButton] = useState();
+export default function AddContent(props) {
+  const [modalShow, setModalShow] = React.useState(false);
+  const [isLogged, setIsLogged] = useState();
+  const [propsi, setProps] = useState(props)  
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("Token") === null ? true : false;
+    setIsLogged(loggedIn);
+  });
 
-    useEffect(() => {
-      const loggedIn =
-        localStorage.getItem("Token") === null ? true : false;
-      setIsLogged(loggedIn);
-      
-    });
-    
-    useEffect(() => {
-        isLogged ? setShowButton(
-            <div />)
-         : setShowButton(
-                <div>
-                    <Fab color="primary" aria-label="Add" style={btnStyle}>
-                        <AddIcon onClick={() => setModalShow(true)} />
-                    </Fab>
-                    <PostModal show={modalShow} onHide={() => setModalShow(false)} />
-                </div>
-            )
-    });
+  const showButton =
+    isLogged || window.location.pathname === "/" ? (
+      <div />
+    ) : (
+      <div>
+        <Fab color="primary" aria-label="Add" style={btnStyle}>
+          <AddIcon onClick={() => setModalShow(true)} />
+        </Fab>
+        <PostModal show={modalShow} onHide={() => setModalShow(false)} />
+      </div>
+    );
+
+  console.log(showButton);
   return <div>{showButton}</div>;
 }
 const btnStyle = {
