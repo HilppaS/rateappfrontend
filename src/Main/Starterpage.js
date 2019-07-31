@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import './Starterpage.css';
 import Sidebar from "./Sidebar";
+import Image from "react-bootstrap/Image";
 
 class Starterpage extends Component {
 
@@ -31,7 +32,12 @@ class Starterpage extends Component {
                     <Row>
                         <Sidebar/>
                         <Col md="auto">{content}</Col>
-                        <Col className="right"></Col>
+                        <Col xs={6} md={4}>
+                        <Image src="https://images.unsplash.com/photo-1551797802-f2dd1ec0033e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80" thumbnail />
+                            <Image src="https://images.unsplash.com/photo-1558642891-54be180ea339?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" thumbnail />
+                            <Image src="https://images.unsplash.com/photo-1507310951869-fe0941df4dbd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" thumbnail />
+                        </Col>
+                        <Col md="auto">{content}</Col>
                     </Row>
                 </Container>
             </div>
