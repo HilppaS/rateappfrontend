@@ -123,11 +123,11 @@ export default function Header(props) {
         console.log(res);
         if (res.status === 200) {
           localStorage.setItem("Token", res.data.accessToken);
-
+          localStorage.setItem("Username", usernameInput);  
           setIsLogged(true);
         }
       })
-      .then(props.history.push("/test"));
+      .then(props.history.push("starter"));
 
     /* .then(window.open("/main")) */
 
@@ -153,27 +153,40 @@ export default function Header(props) {
   };
 
   const isLoggedin = isLogged ? (
-    <Button onClick={logOut}>Logout</Button>
+    <div>
+      <React.Fragment>{localStorage.getItem("Username")}</React.Fragment>
+      <Button onClick={logOut} style={{ marginLeft: '10px' }}>Logout</Button>
+    </div>
   ) : (
-    <Form inline="true" onSubmit={handleSubmit}>
-      <FormControl
-        type="text"
-        placeholder="Username"
-        className="mr-sm-2"
-        value={usernameInput}
-        onChange={handleNameChange}
-      />
-      <FormControl
-        type="password"
-        placeholder="Password"
-        className="mr-sm-2"
-        value={passwordInput}
-        onChange={handlePasswordChange}
-      />
-      <Button variant="outline-primary" onClick={handleSubmit}>
-        Login
-      </Button>
-    </Form>
+    <div>
+      <Form inline="true" onSubmit={handleSubmit}>
+        <FormControl
+          type="text"
+          placeholder="Username"
+          className="mr-sm-2"
+          value={usernameInput}
+          onChange={handleNameChange}
+        />
+        <FormControl
+          type="password"
+          placeholder="Password"
+          className="mr-sm-2"
+          value={passwordInput}
+          onChange={handlePasswordChange}
+        />
+        <Button variant="outline-primary" onClick={handleSubmit}>
+          Login
+        </Button>
+        <Button
+          variant="outline-info"
+          inline="true"
+          style={{ marginLeft: "8px" }}
+          onClick={() => setModalShow(true)}
+        >
+          Register
+        </Button>
+      </Form>
+    </div>
   );
 
   return (
@@ -186,14 +199,6 @@ export default function Header(props) {
       </Nav>
       {isLoggedin}
 
-      <Button
-        variant="outline-info"
-        inline="true"
-        style={{ marginLeft: "8px" }}
-        onClick={() => setModalShow(true)}
-      >
-        Register
-      </Button>
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}

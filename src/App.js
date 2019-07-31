@@ -7,7 +7,8 @@ import Frontpage from './component/frontpage/Frontpage';
 import Test from './component/frontpage/Test';
 import { createBrowserHistory } from "history";
 import Starterpage from "./Main/Starterpage";
-
+import AddContent from './component/AddContent/AddContent'
+import Dashboard from './component/dashboard/Dashboard';
 const history = createBrowserHistory();
 
 
@@ -19,10 +20,12 @@ function App() {
         <Header history={history}/>
         <Switch>
           <Route exact path="/" component={Frontpage} />
-        <Route exact path="/starter" component={Starterpage} />
+         <Route exact path="/starter" component={Starterpage} />
           <Redirect exact from="/" to="/" />
-          <Route exact path="/test" component={Test} />
+          <Route exact path="/test" component={Frontpage} />
+          <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
+        <AddContent />
         <Footer />
       </Router>
     </div>
