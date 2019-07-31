@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Form, FormControl, Button, Modal } from "react-bootstrap";
 import axios from "axios";
+import {Link} from 'react-router-dom'
 
 function MyVerticallyCenteredModal(props) {
   const [name, setName] = useState("");
@@ -193,8 +194,8 @@ export default function Header(props) {
     <Navbar bg="light" variant="light">
       <Navbar.Brand href="#home">RateApp!</Navbar.Brand>
       <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#features">Feed</Nav.Link>
+        <Link to="/starter" className="nav-link">Home</Link>
+        <Link to="/dashboard" className="nav-link">Dashboard</Link>
         <Nav.Link href="#pricing">Stats</Nav.Link>
       </Nav>
       {isLoggedin}

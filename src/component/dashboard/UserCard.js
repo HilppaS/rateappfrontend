@@ -5,11 +5,10 @@ export default function ImgMediaCard(data) {
 console.log(data)
     return (
       <Card>
-        <Card.Img variant="top" src="holder.js/100px180" />
+        <Card.Img variant="top" src="https://images.unsplash.com/photo-1527169402691-feff5539e52c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80" />
         <Card.Body>
           <Card.Text>
-            Some quick example text to build on the card title and make up
-            the bulk of the card's content.
+          Nimi, jotain, jotain
           </Card.Text>
         </Card.Body>
       </Card>
