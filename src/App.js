@@ -6,12 +6,11 @@ import { Router, Route, Redirect, Switch } from "react-router-dom";
 import Frontpage from "./component/frontpage/Frontpage";
 import Test from "./component/frontpage/Test";
 import { createBrowserHistory } from "history";
-import Starterpage from "./Main/Starterpage";
-import AddContent from "./component/AddContent/AddContent";
-import Dashboard from "./component/dashboard/Dashboard";
+import Starterpage from "./component/Feedpage/Starterpage";
+import AddContent from './component/AddContent/AddContent'
+import Dashboard from './component/dashboard/Dashboard';
 
 const history = createBrowserHistory();
-
 const routes =
   localStorage.getItem("Token") === null ? (
     <Route path="/" component={Frontpage} />
