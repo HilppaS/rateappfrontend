@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Card from "react-bootstrap/Card";
-import CardImg from "react-bootstrap/CardImg";
+
 
 
 class Sidebar extends Component {
