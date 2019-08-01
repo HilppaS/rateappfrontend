@@ -19,7 +19,8 @@ export default function Dashboard(props) {
     <div>
       <UserCard data={data} />
       <hr />
-      <UserStatistic />
+      <UserStatistic data={data} />
+      <hr />
       <UserRecentPosts data={data} />
     </div>
   );

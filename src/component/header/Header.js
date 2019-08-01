@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Nav, Form, FormControl, Button, Modal } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Form,
+  FormControl,
+  Button,
+  Modal,
+  NavDropdown
+} from "react-bootstrap";
 import axios from "axios";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function MyVerticallyCenteredModal(props) {
   const [name, setName] = useState("");
@@ -106,6 +114,10 @@ export default function Header(props) {
   const [usernameInput, setUsernameInput] = useState("");
   const [modalShow, setModalShow] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+  
+  const forceReload = () => {
+    props.forceReload();
+  }
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("Token") !== null ? true : false;
@@ -124,11 +136,13 @@ export default function Header(props) {
         console.log(res);
         if (res.status === 200) {
           localStorage.setItem("Token", res.data.accessToken);
-          localStorage.setItem("Username", usernameInput);  
-          setIsLogged(true);
+          localStorage.setItem("Username", usernameInput);
+          
         }
       })
-      .then(props.history.push("starter"));
+      .then(setIsLogged(true))
+      .then(props.history.push("starter"))
+      .then(forceReload());
 
     /* .then(window.open("/main")) */
 
@@ -145,18 +159,29 @@ export default function Header(props) {
   };
 
   const submitUser = data => {
-    axios.post("http://localhost:8080/api/auth/signup", data);
+    axios
+      .post("http://localhost:8080/api/auth/signup", data)
+      .then(res => {
+        console.log(res);
+        if (res.status === 400) {
+          alert("alert!");
+        }
+      })
+      .catch(error => console.log(error));
   };
 
   const logOut = () => {
     localStorage.removeItem("Token");
+    localStorage.removeItem("Username");
     setIsLogged(false);
   };
 
   const isLoggedin = isLogged ? (
     <div>
       <React.Fragment>{localStorage.getItem("Username")}</React.Fragment>
-      <Button onClick={logOut} style={{ marginLeft: '10px' }}>Logout</Button>
+      <Button onClick={logOut} style={{ marginLeft: "10px" }}>
+        Logout
+      </Button>
     </div>
   ) : (
     <div>
@@ -191,13 +216,24 @@ export default function Header(props) {
   );
 
   return (
-    <Navbar bg="light" variant="light">
+    <Navbar
+      collapseOnSelect
+      bg="light"
+      variant="light"
+      sticky="top"
+      expand="md"
+    >
       <Navbar.Brand href="#home">RateApp!</Navbar.Brand>
       <Nav className="mr-auto">
-        <Link to="/starter" className="nav-link">Home</Link>
-        <Link to="/dashboard" className="nav-link">Dashboard</Link>
+        <Link to="/starter" className="nav-link">
+          Home
+        </Link>
+        <Link to="/dashboard" className="nav-link">
+          Dashboard
+        </Link>
         <Nav.Link href="#pricing">Stats</Nav.Link>
       </Nav>
+
       {isLoggedin}
 
       <MyVerticallyCenteredModal
