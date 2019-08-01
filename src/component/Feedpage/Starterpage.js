@@ -3,6 +3,7 @@ import CardWithpic from "../CardWithpic";
 import './Starterpage.css';
 import axios from "axios";
 import CardColumns from "react-bootstrap/CardColumns";
+import Sidebar from "./Sidebar";
 
 
 class Starterpage extends Component {
@@ -39,7 +40,7 @@ class Starterpage extends Component {
 
         return (
             <div>
-                {/*    <Sidebar/> */}
+                {/*  <Sidebar/> */}
                 <CardColumns>{content}</CardColumns>
                 {/*   <Col xs={6} md={4}>*/}
             </div>
