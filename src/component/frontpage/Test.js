@@ -5,6 +5,7 @@ export default function Test(props) {
     
     return (
         <div>
+            <img src="pictures/scambuilder.PNG"></img>
         </div>
     )
 }
