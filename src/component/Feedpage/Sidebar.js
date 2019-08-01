@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Card from "react-bootstrap/Card";
+import CardImg from "react-bootstrap/CardImg";
 
 
 
@@ -11,9 +12,9 @@ class Sidebar extends Component {
         return (
                 <div className="sidebar">
 
-                    <Card bg="info" text="white" style={{ width: '18rem' }}>
+                    <Card bg="info" text="white" style={{ width: '18rem'}}>
                         <Card.Body className="text-center">
-                            {/*   <CardImg variant="top" src={lataus} alt="Logo" />*/}
+                            <CardImg variant="top" src="./tyyppi.png" width={5} alt="Logo" />
                             <Card.Title>USERS</Card.Title>
                             <Card.Text><p className="useramount">500</p></Card.Text>
                         </Card.Body>
