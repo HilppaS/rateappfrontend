@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, Component} from "react";
 import "./App.css";
 import Header from "./component/header/Header";
 import Footer from "./component/footer/Footer";
@@ -7,42 +7,46 @@ import Frontpage from "./component/frontpage/Frontpage";
 import Test from "./component/frontpage/Test";
 import { createBrowserHistory } from "history";
 import Starterpage from "./component/Feedpage/Starterpage";
-import AddContent from './component/AddContent/AddContent'
-import Dashboard from './component/dashboard/Dashboard';
-
+import AddContent from "./component/AddContent/AddContent";
+import Dashboard from "./component/dashboard/Dashboard";
 const history = createBrowserHistory();
-const routes =
-  localStorage.getItem("Token") === null ? (
-    <Route path="/" component={Frontpage} />
-  ) : (
-    <div>
-      <Switch>
-        <Route exact path="/" component={Frontpage} />
-        <Route exact path="/starter" component={Starterpage} />
-        <Redirect exact from="/" to="/" />
-        <Route exact path="/test" component={Test} />
-        <Route exact path="/dashboard" component={Dashboard} />
-      </Switch>
-      <AddContent />
-    </div>
-  );
+
+class App extends Component {
+  state = { forceRender: "" }
+
+
   
-  function App() {
-    const [reload, useReload] = useState("")
+  forceReload = () => {
+    this.setState({forceRender: "AAAA"})
+  }
+  render() {
+    const routes =
+      localStorage.getItem("Token") === null ? (
+        <Route path="/" component={Frontpage} />
+      ) : (
+          <div>
+            <Switch>
+              <Route exact path="/" component={Frontpage} />
+              <Route exact path="/starter" component={Starterpage} />
+              <Redirect exact from="/" to="/" />
+              <Route exact path="/test" component={Test} />
+              <Route exact path="/dashboard" component={Dashboard} />
+            </Switch>
+            {/* <AddContent /> */}
+          </div>
+        );
     
-    const forceReload = () => {
-      
-    };
+    
 
-  return (
-    <div className="App">
-      <Router history={history}>
-        <Header history={history} forceReload={forceReload} />
-        {routes}
-        <Footer />
-      </Router>
-    </div>
-  );
+    return (
+      <div className="App">
+        <Router history={history}>
+          <Header history={history} forceReload={this.forceReload} />
+          {routes}
+          <Footer />
+        </Router>
+      </div>
+    );
+  }
 }
-
 export default App;

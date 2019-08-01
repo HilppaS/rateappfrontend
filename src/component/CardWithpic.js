@@ -48,7 +48,6 @@ class CardWithpic extends Component {
     };
 
     render() {
-
         console.log(this.props)
         return (
 
