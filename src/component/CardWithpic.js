@@ -62,7 +62,7 @@ class CardWithpic extends Component {
                             {this.props.content.isLiked}>LIKE</Button>
 
                         <Button variant="info" onClick={this.openModal}>More info</Button>
-                        <Modal visible={this.state.visible} width="70%" height="70%" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                        <Modal visible={this.state.visible} width="100%" height="70%" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                             <div>
                                 <img src={this.props.content.image.name}></img>
                                 <p> {this.props.content.headline}</p>
