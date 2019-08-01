@@ -6,15 +6,18 @@ import { Router, Route, Redirect, Switch } from "react-router-dom";
 import Frontpage from "./component/frontpage/Frontpage";
 import Test from "./component/frontpage/Test";
 import { createBrowserHistory } from "history";
-import Starterpage from "./Main/Starterpage";
+import Starterpage from "./component/Feedpage/Starterpage";
 import AddContent from "./component/AddContent/AddContent";
 import Dashboard from "./component/dashboard/Dashboard";
 const history = createBrowserHistory();
+
 class App extends Component {
   state = { forceRender: "" }
+
+
   
   forceReload = () => {
-    this.setState.forceRender("d")
+    this.setState({forceRender: "AAAA"})
   }
   render() {
     const routes =
@@ -29,7 +32,7 @@ class App extends Component {
               <Route exact path="/test" component={Test} />
               <Route exact path="/dashboard" component={Dashboard} />
             </Switch>
-            <AddContent />
+            {/* <AddContent /> */}
           </div>
         );
     

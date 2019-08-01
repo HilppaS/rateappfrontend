@@ -13,15 +13,16 @@ export default function PostModal(props) {
     console.log(file);
     const data = { headline, content }
     console.log(data)
+    const url = file.isEmpty() ? 'http://localhost:8080/api/content' : 'http://localhost:8080/api/contentAndImage'
     let formData = new FormData();
      formData.set('headline', headline)
     formData.set('text', content) 
-    formData.append('file', file)
+    formData.append('multipartFile', file)
     
     console.log(formData)
     axios
       .post(
-        "http://localhost:8080/api/content",
+        url,
           /* {
           headline: headline,
           text: content,
@@ -35,7 +36,7 @@ export default function PostModal(props) {
           }
         }
       )
-      .then(res => console.log(res))
+      .then(res => props.renderOnSubmit(res))
       .catch(error => console.log(error));
     props.onHide();
   };

@@ -14,7 +14,7 @@ export default function UserStatistic(props) {
                 {props.data.length} arvosteltua shittiä
               </Card.Text>
             </Card.Body>
-            <Card.Footer text="white">
+            <Card.Footer >
               <small className="text-muted">Last updated 3 mins ago</small>
             </Card.Footer>
           </Card>
