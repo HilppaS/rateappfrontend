@@ -45,7 +45,7 @@ class Starterpage extends Component {
 
         return (
             <div>
-                {/*    <Sidebar/> */}
+                {/*  <Sidebar/> */}
                 <CardColumns>{content}</CardColumns>
             {/*   <Col xs={6} md={4}>*/}
             <AddContent renderOnSubmit={this.reRender}/>

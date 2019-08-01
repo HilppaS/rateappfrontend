@@ -1,5 +1,6 @@
 import React from 'react'
 import {Card, CardDeck} from 'react-bootstrap'
+import CardImg from "react-bootstrap/CardImg";
 
 export default function UserStatistic(props) {
     const test = props.data
@@ -20,6 +21,7 @@ export default function UserStatistic(props) {
           </Card>
           <Card bg="secondary" text="white">
             <Card.Body>
+              {/*  <CardImg variant="top" src="./tyyppi.png"></CardImg> */}
               <Card.Title>Card title</Card.Title>
               <Card.Text>
                 This card has supporting text below as a natural lead-in to

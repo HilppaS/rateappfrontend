@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import CardImg from "react-bootstrap/CardImg";
 import Redirect from "react-router-dom/es/Redirect";
 import Modal from 'react-awesome-modal';
+import axios from "axios";
 
 class CardWithpic extends Component {
 
@@ -25,6 +26,27 @@ class CardWithpic extends Component {
     closeModal() {
         this.setState({visible : false});
     }
+
+    handleLike = e =>{
+        e.preventDefault();
+        const token = localStorage.getItem("Token");
+        const formData = {id:this.props.content.id}
+        console.log(formData)
+
+        axios.post("/api/content/like",
+            formData,
+            {
+                headers: {
+                    Authorization: "Bearer " + token
+                    /* "Content-Type": "multipart/form-data" */
+                }
+            }
+        )
+            .then(res => console.log(res))
+            .catch(error => console.log(error));
+
+    };
+
     render() {
         console.log(this.props)
         return (
@@ -36,11 +58,15 @@ class CardWithpic extends Component {
                         <Card.Text>{this.props.content.text}</Card.Text>
                         {/*    {this.renderRedirect()} */}
                         <Button variant="dark" onClick={this.setRedirect} >Linkki</Button>
-                        <Card.Text> posted: {this.props.content.createdAt}</Card.Text>
+                        <Button variant="warning" onClick={this.handleLike} value=
+                            {this.props.content.isLiked}>LIKE</Button>
 
                         <Button variant="info" onClick={this.openModal}>More info</Button>
-                        <Modal visible={this.state.visible} width="80%" height="60%" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                        <Modal visible={this.state.visible} width="70%" height="70%" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                             <div>
+                                <img src={this.props.content.image.name}></img>
+                                <p> {this.props.content.headline}</p>
+                                <p> {this.props.content.text}</p>
                                 <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
                             </div>
                         </Modal>
