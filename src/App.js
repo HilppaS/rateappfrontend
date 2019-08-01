@@ -9,6 +9,7 @@ import { createBrowserHistory } from "history";
 import Starterpage from "./component/Feedpage/Starterpage";
 import AddContent from "./component/AddContent/AddContent";
 import Dashboard from "./component/dashboard/Dashboard";
+import Modal from "react-awesome-modal";
 const history = createBrowserHistory();
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
         <Route path="/" component={Frontpage} />
       ) : (
           <div>
+            <Modal></Modal>
             <Switch>
               <Route exact path="/" component={Frontpage} />
               <Route exact path="/starter" component={Starterpage} />

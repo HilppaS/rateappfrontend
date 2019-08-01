@@ -13,6 +13,7 @@ class Starterpage extends Component {
     axios.get("http://localhost:8080/api/content?page=0&size=10").then(res => {
       console.log(res);
       this.setState({ teksti: res.data.content });
+      this.setState({ render: res.data.content });
     });
   }
 
@@ -22,6 +23,13 @@ class Starterpage extends Component {
       this.setState({ teksti: res.data.content });
     });
   };
+  
+  filterData = e => {
+    
+    const filtered = this.state.teksti.filter(t => 
+      t.text.includes(e.target.value))
+      this.setState({teksti: filtered})
+    } 
   render() {
     var content = this.state.teksti.map(sisalto => {
       if (sisalto.image == null) {
@@ -29,12 +37,13 @@ class Starterpage extends Component {
       }
       return <CardWithpic content={sisalto} key={sisalto.id} />;
     });
-    console.log(this.state);
-    console.log(this.props);
+
 
     return (
       <div>
         {/*  <Sidebar/> */}
+        <input type="text" onChange={this.filterData}></input>
+
         <CardColumns>{content}</CardColumns>
         {/*   <Col xs={6} md={4}>*/}
         <AddContent renderOnSubmit={this.reRender} />
