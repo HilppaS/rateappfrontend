@@ -10,6 +10,9 @@ import Starterpage from "./component/Feedpage/Starterpage";
 import AddContent from "./component/AddContent/AddContent";
 import Dashboard from "./component/dashboard/Dashboard";
 import Modal from "react-awesome-modal";
+import StarterAuthRoutes from "./component/Feedpage/StarterAuthRoutes";
+import "react-toastify/dist/ReactToastify.css";
+
 const history = createBrowserHistory();
 
 class App extends Component {
@@ -28,11 +31,11 @@ class App extends Component {
           <div>
             <Modal></Modal>
             <Switch>
-              <Route exact path="/" component={Frontpage} />
+              <Route path="/" component={Frontpage} />
               <Route exact path="/starter" component={Starterpage} />
-              <Redirect exact from="/" to="/" />
-              <Route exact path="/test" component={Test} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              {/* <Redirect exact from="/" to="/" /> */}
+              {/* <Route exact path="/test" component={Test} />
+              <Route exact path="/dashboard" component={Dashboard} /> */}
             </Switch>
             {/* <AddContent /> */}
           </div>
@@ -44,7 +47,14 @@ class App extends Component {
       <div className="App">
         <Router history={history}>
           <Header history={history} forceReload={this.forceReload} />
-          {routes}
+          <Modal />
+          <Switch>
+            <Route  path="/starter" component={Starterpage} />
+            <Route  path="/" component={Frontpage} />
+            {/* <Redirect exact from="/" to="/" /> */}
+            
+            
+          </Switch>
           <Footer />
         </Router>
       </div>

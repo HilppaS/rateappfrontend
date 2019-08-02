@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import CardImg from "react-bootstrap/CardImg";
 import Modal from "react-awesome-modal";
 import axios from "axios";
-
+import moment from 'moment'
 
 class CardWithpic extends Component {
 
@@ -41,29 +41,62 @@ class CardWithpic extends Component {
             .catch(error => console.log(error));
     };
 
-
+    handleLike = e => {
+        e.preventDefault();
+        const token = localStorage.getItem("Token");
+        const formData = this.props.content.id;
+        const test = {
+          
+            id: this.props.content.id
+        };
+        console.log(test);
+    }
     render() {
+        const test = this.props.content.createdAt;
 
-        return (
-
-                <Card>
-                    <CardImg variant="top" src={this.props.content.image.name} onMouseOver={() => console.log("Hovered!")}/>
-                    <Card.Body className="text-center">
-                    <Card.Title>{this.props.content.headline}</Card.Title>
-                    <Card.Text>{this.props.content.text}</Card.Text>
-                    <Button variant="warning" onClick={this.shoot}> Like</Button>
-                    <Button variant="info" onClick={this.openModal}>More info</Button>  <Modal visible={this.state.visible} width="70%" height="70%" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+            return (
+              <Card>
+                {moment(test, "YYYY-MM-DD HH:mm:ss").fromNow()}
+                <CardImg
+                  variant="top"
+                  src={this.props.content.image.name}
+                  onMouseOver={() => console.log("Hovered!")}
+                />
+                <Card.Body className="text-center">
+                  <Card.Title>
+                    {this.props.content.headline}
+                  </Card.Title>
+                  <Card.Text>{this.props.content.text}</Card.Text>
+                  <Button variant="warning" onClick={this.shoot}>
+                    {" "}
+                    Like
+                  </Button>
+                  <Button variant="info" onClick={this.openModal}>
+                    More info
+                  </Button>{" "}
+                  <Modal
+                    visible={this.state.visible}
+                    width="70%"
+                    height="70%"
+                    effect="fadeInUp"
+                    onClickAway={() => this.closeModal()}
+                  >
                     <div>
-                        <img src={this.props.content.image.name}></img>
-                        <p> {this.props.content.headline}</p>
-                        <p> {this.props.content.text}</p>
-                    <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+                      <img src={this.props.content.image.name} />
+                      <p> {this.props.content.headline}</p>
+                      <p> {this.props.content.text}</p>
+                      <a
+                        href="javascript:void(0);"
+                        onClick={() => this.closeModal()}
+                      >
+                        Close
+                      </a>
                     </div>
-                    </Modal>
+                  </Modal>
                 </Card.Body>
-                </Card>
-);
-}
+              </Card>
+            );
+        }
+    }
 
-}
-export default CardWithpic;
+      export default CardWithpic;

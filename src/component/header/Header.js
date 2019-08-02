@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function MyVerticallyCenteredModal(props) {
   const [name, setName] = useState("");
@@ -34,7 +35,6 @@ function MyVerticallyCenteredModal(props) {
     e.preventDefault();
     const user = { name, username, email, password };
     props.submituser(user);
-    props.onHide();
   };
 
   return (
@@ -134,20 +134,19 @@ export default function Header(props) {
       })
       .then(res => {
         console.log(res);
-        if (res.status === 200) {
+        /* if (res.data.status === 200) { */
           localStorage.setItem("Token", res.data.accessToken);
           localStorage.setItem("Username", usernameInput);
-          
-        }
+          setIsLogged(true)
+          setUsernameInput("");
+          setPasswordInput("");
+          toastSuccess(localStorage.getItem("Username") + " logged in!")
+        /* }  */
+      }).catch(err => {
+        console.log(err)
+        toastLoginError("Wrong username or password!")
       })
-      .then(setIsLogged(true))
-      .then(props.history.push("starter"))
-      .then(forceReload());
 
-    /* .then(window.open("/main")) */
-
-    setUsernameInput("");
-    setPasswordInput("");
   };
 
   const handleNameChange = e => {
@@ -163,18 +162,35 @@ export default function Header(props) {
       .post("http://localhost:8080/api/auth/signup", data)
       .then(res => {
         console.log(res);
-        if (res.status === 400) {
-          alert("alert!");
+        if (res.status === 201) {
+          setModalShow(false);
+          toastSuccess("New user created succesfully!")
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => toastLoginError(error));
   };
 
   const logOut = () => {
+    toastSuccess(localStorage.getItem("Username") + " logged out")
     localStorage.removeItem("Token");
     localStorage.removeItem("Username");
     setIsLogged(false);
+    props.history.push("")
   };
+
+  const toastLoginError = (err) => {
+    toast.error(err);
+    console.log(err)
+  } 
+
+  const toastSuccess = msg => {
+    toast.success("" + msg);
+    console.log(msg);
+  };
+
+  const toastSignupError = msg => {
+
+  }
 
   const isLoggedin = isLogged ? (
     <div>
@@ -211,7 +227,8 @@ export default function Header(props) {
         >
           Register
         </Button>
-      </Form>
+        </Form>
+        
     </div>
   );
 
@@ -223,15 +240,15 @@ export default function Header(props) {
       sticky="top"
       expand="md"
     >
-      <Navbar.Brand href="#home">LikeApp!</Navbar.Brand>
+      <Navbar.Brand href="/">LikeApp!</Navbar.Brand>
       <Nav className="mr-auto">
         <Link to="/starter" className="nav-link">
-          Home
+          Feed
         </Link>
-        <Link to="/dashboard" className="nav-link">
+        {/* <Link to="/dashboard" className="nav-link">
           Dashboard
         </Link>
-        <Nav.Link href="#pricing">Stats</Nav.Link>
+        <Nav.Link href="#pricing">Stats</Nav.Link> */}
       </Nav>
 
       {isLoggedin}
@@ -241,6 +258,7 @@ export default function Header(props) {
         onHide={() => setModalShow(false)}
         submituser={submitUser}
       />
+      <ToastContainer />
     </Navbar>
   );
 }
