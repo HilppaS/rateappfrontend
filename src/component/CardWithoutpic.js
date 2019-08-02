@@ -4,22 +4,26 @@ import Card from "react-bootstrap/Card";
 import CardImg from "react-bootstrap/CardImg";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
+import moment from 'moment'
 class CardWithoutpic extends Component {
 
-
-
+    
     render() {
+        const test = this.props.content.createdAt
         return (
+          <div>
+            {/* <span>{moment().fromNow()}</span> */}
             <Card>
-                <Card.Body className="text-center">
-                    <Card.Title>{this.props.content.headline}</Card.Title>
-                    <Card.Text>{this.props.content.text}</Card.Text>
-                    <Card.Text> posted: {this.props.content.createdAt}</Card.Text>
-                </Card.Body>
-
-
+            {moment(test, "YYYY-MM-DD HH:mm:ss").fromNow()}
+              <Card.Body className="text-center">
+                <Card.Title>{this.props.content.headline}</Card.Title>
+                <Card.Text>{this.props.content.text}</Card.Text>
+                <Card.Text>
+                  
+                </Card.Text>
+              </Card.Body>
             </Card>
+          </div>
         );
     }
 }

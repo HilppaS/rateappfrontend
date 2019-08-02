@@ -5,31 +5,36 @@ import { Button, Modal, Form } from "react-bootstrap";
 export default function PostModal(props) {
   const [headline, setHeadline] = useState("");
   const [content, setContent] = useState("");
-  const [file, setFile] = useState();
+  const [file, setFile] = useState("empty");
 
   const handleSubmit = e => {
     e.preventDefault();
     const token = localStorage.getItem("Token");
     console.log(file);
-    const data = { headline, content }
-    console.log(data)
+    const data = { headline, content };
+    console.log(data);
+    const url =
+      file === "empty"
+        ? "http://localhost:8080/api/content"
+        : "http://localhost:8080/api/contentAndImage";
     let formData = new FormData();
-     formData.set('headline', headline)
-    formData.set('text', content) 
-    formData.append('multipartFile', file)
-    console.log(formData)
+    formData.set("headline", headline);
+    formData.set("text", content);
+    formData.append("multipartFile", file);
+
+    const textOnly = { headline: headline, text: content };
+
+    const dataToSend = file === "empty" ? textOnly : formData;
+
+    console.log(formData);
     axios
-      .post(
-        "http://localhost:8080/api/contentAndImage",
-     formData,
-        {
-          headers: {
-            Authorization: "Bearer " + token
-            /* "Content-Type": "multipart/form-data" */
-          }
+      .post(url, dataToSend , {
+        headers: {
+          Authorization: "Bearer " + token
+          /* "Content-Type": "multipart/form-data" */
         }
-      )
-      .then(res => console.log(res))
+      })
+      .then(res => props.renderOnSubmit(res))
       .catch(error => console.log(error));
     props.onHide();
   };
@@ -60,7 +65,7 @@ export default function PostModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={handleSubmit} >
+        <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicHeadline">
             <Form.Label>Headline</Form.Label>
             <Form.Control
@@ -82,11 +87,7 @@ export default function PostModal(props) {
           </Form.Group>
           <Form.Group controlId="formBasicFile">
             <Form.Label>Upload file</Form.Label>
-            <Form.Control
-              type="file"
-              name="file"
-              onChange={handleFileChange}
-            />
+            <Form.Control type="file" name="file" onChange={handleFileChange} />
           </Form.Group>
           <Button variant="primary" type="submit" onClick={handleSubmit}>
             Submit

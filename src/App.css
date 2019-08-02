@@ -1,15 +1,32 @@
-h1 {text-align: center;
-font-family: Calibri}
-
-.jumbotron {
-    background: url('./pictures/frontpagebackg1.jpg') no-repeat center;
-    height: 700px;
-    color: 'white'!important;
+h1 {
+  text-align: center;
+  font-family: Calibri;
 }
 
-.jumbotron p, h1 {
-    background-color: 'black'!important;
-    color: white;
-    text-align: center;
-    }
+.jumbotron {
+  background: url("./pictures/frontpage2.jpg") no-repeat center;
+  height: 700px;
+  color: "white" !important;
+}
 
+.jumbotron p,
+h1 {
+  background-color: "black" !important;
+  color: white;
+  text-align: center;
+}
+
+.infoModal {
+  background: #8e9eab; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #eef2f3,
+    #8e9eab
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #eef2f3,
+    #8e9eab
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 100%;
+}

@@ -6,12 +6,12 @@ export default function Footer() {
       <h3
         style={{
           textAlign: "center",
-          backgroundColor: "black",
-                  color: "white",
-          padding: '20px'
+          backgroundColor: "#f9f9f9",
+          color: "black",
+          padding: "20px"
         }}
       >
-        Footer
+        Grateapp!
       </h3>
     </div>
   );

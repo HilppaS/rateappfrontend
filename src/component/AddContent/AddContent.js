@@ -7,13 +7,13 @@ import AddIcon from "@material-ui/icons/Add";
 export default function AddContent(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const [isLogged, setIsLogged] = useState();
-  const [propsi, setProps] = useState(props)
-  
+  const [propsi, setProps] = useState(props);
+
   useEffect(() => {
     const loggedIn = localStorage.getItem("Token") === null ? true : false;
     setIsLogged(loggedIn);
   }, props);
-  
+
   const showButton =
     isLogged || window.location.pathname === "/" ? (
       <div />
@@ -22,10 +22,13 @@ export default function AddContent(props) {
         <Fab color="primary" aria-label="Add" style={btnStyle}>
           <AddIcon onClick={() => setModalShow(true)} />
         </Fab>
-        <PostModal show={modalShow} onHide={() => setModalShow(false)} />
+        <PostModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          renderOnSubmit={props.renderOnSubmit}
+        />
       </div>
     );
-
 
   console.log(showButton);
   return <div>{showButton}</div>;
