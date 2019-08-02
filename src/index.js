@@ -6,6 +6,8 @@ import App from './App';
 import "bootstrap/dist/css/bootstrap.css";
 import * as serviceWorker from './serviceWorker';
 import "bootstrap/dist/css/bootstrap.css";
+import 'mdbreact/dist/css/mdb.css'
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

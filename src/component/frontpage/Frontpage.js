@@ -6,12 +6,12 @@ export default class Frontpage extends Component {
         return (
             <div className="Jumbotron">
             <Jumbotron >
-              <h1>Rate app!</h1>
+              <h1>LIKE APP!</h1>
               <p>
-                Rate stuff and things, fun fun fun!
+                Like stuff and things, fun fun fun!
               </p>
               <p>
-                <Button variant="primary">Learn more</Button>
+                <Button variant="dark">Learn more</Button>
               </p>
                 </Jumbotron>
           </div>
