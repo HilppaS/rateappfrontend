@@ -179,7 +179,7 @@ export default function Header(props) {
   const isLoggedin = isLogged ? (
     <div>
       <React.Fragment>{localStorage.getItem("Username")}</React.Fragment>
-      <Button onClick={logOut} style={{ marginLeft: "10px" }}>
+      <Button variant="dark" onClick={logOut} style={{ marginLeft: "10px" }}>
         Logout
       </Button>
     </div>
@@ -223,7 +223,7 @@ export default function Header(props) {
       sticky="top"
       expand="md"
     >
-      <Navbar.Brand href="#home">RateApp!</Navbar.Brand>
+      <Navbar.Brand href="#home">LikeApp!</Navbar.Brand>
       <Nav className="mr-auto">
         <Link to="/starter" className="nav-link">
           Home
