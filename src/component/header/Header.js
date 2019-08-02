@@ -195,7 +195,7 @@ export default function Header(props) {
   const isLoggedin = isLogged ? (
     <div>
       <React.Fragment>{localStorage.getItem("Username")}</React.Fragment>
-      <Button onClick={logOut} style={{ marginLeft: "10px" }}>
+      <Button variant="dark" onClick={logOut} style={{ marginLeft: "10px" }}>
         Logout
       </Button>
     </div>
@@ -233,18 +233,22 @@ export default function Header(props) {
   );
 
   return (
-    <Navbar bg="light" variant="light" sticky="top" expand="md">
-      <Link to="/">
-        <Navbar.Brand>RateApp!</Navbar.Brand>
-      </Link>
+    <Navbar
+      collapseOnSelect
+      bg="light"
+      variant="light"
+      sticky="top"
+      expand="md"
+    >
+      <Navbar.Brand href="/">LikeApp!</Navbar.Brand>
       <Nav className="mr-auto">
         <Link to="/starter" className="nav-link">
-          Home
+          Feed
         </Link>
-        <Link to="/dashboard" className="nav-link">
+        {/* <Link to="/dashboard" className="nav-link">
           Dashboard
         </Link>
-        <Nav.Link href="#pricing">Stats</Nav.Link>
+        <Nav.Link href="#pricing">Stats</Nav.Link> */}
       </Nav>
 
       {isLoggedin}

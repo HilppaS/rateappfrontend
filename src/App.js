@@ -31,11 +31,11 @@ class App extends Component {
           <div>
             <Modal></Modal>
             <Switch>
-              <Route exact path="/" component={Frontpage} />
+              <Route path="/" component={Frontpage} />
               <Route exact path="/starter" component={Starterpage} />
-              <Redirect exact from="/" to="/" />
-              <Route exact path="/test" component={Test} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              {/* <Redirect exact from="/" to="/" /> */}
+              {/* <Route exact path="/test" component={Test} />
+              <Route exact path="/dashboard" component={Dashboard} /> */}
             </Switch>
             {/* <AddContent /> */}
           </div>
@@ -49,11 +49,11 @@ class App extends Component {
           <Header history={history} forceReload={this.forceReload} />
           <Modal />
           <Switch>
-            <Route exact path="/" component={Frontpage} />
-            <Route exact path="/starter" component={StarterAuthRoutes} />
-            <Redirect exact from="/" to="/" />
+            <Route  path="/starter" component={Starterpage} />
+            <Route  path="/" component={Frontpage} />
+            {/* <Redirect exact from="/" to="/" /> */}
             
-            <Route exact path="/dashboard" component={Dashboard} />
+            
           </Switch>
           <Footer />
         </Router>
