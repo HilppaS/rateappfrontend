@@ -25,7 +25,8 @@ export default function AddContent(props) {
         <PostModal
           show={modalShow}
           onHide={() => setModalShow(false)}
-          renderOnSubmit={props.renderOnSubmit}
+            renderOnSubmit={props.renderOnSubmit}
+            toast={props.toast}
         />
       </div>
     );

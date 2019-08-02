@@ -34,7 +34,10 @@ export default function PostModal(props) {
           /* "Content-Type": "multipart/form-data" */
         }
       })
-      .then(res => props.renderOnSubmit(res))
+      .then(res => {
+        props.toast()
+        props.renderOnSubmit(res)
+      })
       .catch(error => console.log(error));
     props.onHide();
   };
@@ -61,26 +64,27 @@ export default function PostModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Rate new shit!
+          Post new hipsterpicture!
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicHeadline">
-            <Form.Label>Headline</Form.Label>
+            <Form.Label></Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter headline"
+              placeholder="headline"
               value={headline}
               onChange={handleHeadlineChange}
             />
           </Form.Group>
 
           <Form.Group controlId="formBasicContent">
-            <Form.Label>Content</Form.Label>
+            <Form.Label></Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Rate shit!"
+              as="textarea"
+              rows="4"
+              placeholder="Description"
               value={content}
               onChange={handleContentChange}
             />

@@ -30,7 +30,10 @@ class CardWithpic extends Component {
     e.preventDefault();
     const token = localStorage.getItem("Token");
     const formData = this.props.content.id;
-      const test = { contentId: this.props.content.id };
+      const test = {
+          
+          id: this.props.content.id
+      };
     console.log(test);
 
     axios
@@ -79,7 +82,11 @@ class CardWithpic extends Component {
               <img src={this.props.content.image.name} />
               <p> {this.props.content.headline}</p>
               <p> {this.props.content.text}</p>
-              <a href="javascript:void(0);" onClick={() => this.closeModal()}>
+              <p>{moment(test, "YYYY-MM-DD HH:mm:ss").fromNow()}</p>
+              <a
+                href="javascript:void(0);"
+                onClick={() => this.closeModal()}
+              >
                 Close
               </a>
             </div>
